@@ -163,8 +163,11 @@ function renderHome(){
         <span class="mono">课<em>代表</em></span>
         <span class="toplinks"><a href="videos.html">课程</a><a href="resources.html">资料</a><a href="about.html">关于</a></span>
       </div>
-      <div class="hero-name lines">
-        <h1 class="display"><span class="line"><span data-line style="--i:0">抓考点</span></span><span class="line"><span class="ink2" data-line style="--i:1">学明白</span></span></h1>
+      <div class="hero-main">
+        <img class="hero-avatar" src="${esc(s.logo)}" alt="课代表头像" data-reveal>
+        <div class="hero-name lines">
+          <h1 class="display"><span class="line"><span data-line style="--i:0">抓考点</span></span><span class="line"><span class="ink2" data-line style="--i:1">学明白</span></span></h1>
+        </div>
       </div>
       <div class="hero-foot">
         <p class="support">${esc(s.slogan)}。<br>图文加短视频，<b>3 到 5 分钟讲透一个知识点</b>。</p>

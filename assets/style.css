@@ -102,7 +102,12 @@ nav a:hover,nav a.on{color:var(--gold);border-color:var(--gold)}
 .hero-top .mono em{font-style:normal;color:var(--gold)}
 .hero-top .toplinks{display:flex;gap:1.2rem;color:var(--light-soft)}
 .hero-top .toplinks a:hover{color:var(--gold)}
-.hero-name{margin-top:auto;margin-bottom:auto;padding-block:2vh}
+.hero-main{margin-top:auto;margin-bottom:auto;padding-block:2vh;display:flex;align-items:center;gap:clamp(1.5rem,4vw,3.5rem)}
+.hero-avatar{width:clamp(96px,15vw,190px);height:clamp(96px,15vw,190px);border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:clamp(3px,.5vw,5px) solid var(--gold);box-shadow:0 0 0 clamp(4px,.7vw,9px) rgba(255,208,53,.15)}
+@media (prefers-reduced-motion:no-preference){.hero-avatar{animation:ad-float 5s var(--ease-in-out) infinite}}
+@keyframes ad-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-name{min-width:0}
 .hero-name .display{color:var(--light)}
 .hero-name .display .ink2{color:var(--gold);display:block}
 .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
@@ -232,6 +237,8 @@ footer{background:var(--navy);color:var(--light);overflow:hidden;position:relati
   nav{gap:.8rem}
   nav a{font-size:var(--step-small)}
   .hero{min-height:100svh}
+  .hero-main{flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .hero-avatar{width:clamp(84px,22vw,120px);height:clamp(84px,22vw,120px)}
   .hero-top .toplinks{gap:.7rem}
   .hero-foot{flex-direction:column;align-items:flex-start;gap:1.25rem}
   .hero-foot .support{max-width:100%}
