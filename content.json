@@ -1,20 +1,59 @@
 {
+  "_schema": "kedaibiao-site/content.json v3（2026-11-21 结构收口）。全站唯一内容真源：新增/修改课程、资料、地址只改本文件，页面自动读取。字段契约见 validate.py，维护说明见 网站结构与维护手册.md。",
   "site": {
     "name": "课代表",
     "logo": "assets/avatar.jpg",
     "slogan": "抓考点 · 划重点 · 学明白",
-    "intro": "把每节课的知识点讲得明明白白。覆盖小学到高中各学科，风趣幽默，按课标持续更新。",
+    "intro": "把每节课的知识点讲得明明白白。覆盖小学一年级到高中三年级全年级、全学科，风趣幽默，按课标持续更新。",
+    "description": "课代表——图文加短视频，3到5分钟讲透一个知识点。覆盖小学到高中全年级、全学科，按课标持续更新，配套资料免费领取。",
+    "keywords": "课代表,知识点讲解,小学到高中,全年级全学科,语文数学英语物理化学,正数与负数,网课,学习资料",
     "bilibili": "",
     "wechat": "",
     "backupPage": "go.html",
     "updateNote": "按课标持续更新 · 每个知识点 3-5 分钟 · 人工校对",
+    "showStats": false,
+    "_showStatsNote": "首页统计条开关。起步阶段资源少先隐藏，内容积累后改为 true 即可显示",
+    "footerNote": "课代表 · 课堂学习小伙伴 · 免费分享，一起学明白",
     "note": "内容清单单一真源：新增/修改内容只改本文件，网站自动读取展示。视频外链用B站bvid，资料外链用网盘链接。"
   },
-  "collections": [
-    { "id": "MATH-J", "name": "初中数学", "desc": "按课标章节顺序，一个视频讲透一个知识点", "grade": "初中", "status": "active" },
-    { "id": "MATH-P", "name": "小学数学", "desc": "正在建设中，敬请期待", "grade": "小学", "status": "building" },
-    { "id": "MATH-H", "name": "高中数学", "desc": "正在建设中，敬请期待", "grade": "高中", "status": "building" }
+  "navigation": [
+    { "label": "首页", "href": "index.html", "key": "home" },
+    { "label": "课程", "href": "videos.html", "key": "videos" },
+    { "label": "资料", "href": "resources.html", "key": "resources" },
+    { "label": "关于", "href": "about.html", "key": "about" }
   ],
+  "subjects": ["语文", "数学", "英语", "道德与法治", "科学", "历史", "地理", "物理", "化学", "生物", "信息技术", "音乐", "美术"],
+  "_subjectsNote": "全学科覆盖声明：小学到高中各年级的学科均可逐步更新。首页/关于页以文字标签展示覆盖学科，不做空入口。",
+  "collections": [
+    { "id": "STAGE-P", "name": "小学", "desc": "1-6 年级全学科，按课标章节顺序更新", "grade": "小学", "status": "building", "icon": "🔢", "order": 1 },
+    { "id": "STAGE-J", "name": "初中", "desc": "7-9 年级全学科，一个视频讲透一个知识点", "grade": "初中", "status": "active", "icon": "📐", "order": 2 },
+    { "id": "STAGE-H", "name": "高中", "desc": "1-3 年级全学科，按课标章节顺序更新", "grade": "高中", "status": "building", "icon": "📊", "order": 3 }
+  ],
+  "learningSteps": [
+    { "no": 1, "title": "选知识点", "desc": "按学段找到要学的那一课" },
+    { "no": 2, "title": "看图文 + 视频", "desc": "3-5 分钟讲透，边看边学" },
+    { "no": 3, "title": "领资料练习", "desc": "网盘免费领取，巩固所学" }
+  ],
+  "aboutLayers": {
+    "forParents": {
+      "title": "给家长和老师",
+      "points": [
+        "覆盖小学一年级到高中三年级全年级、全学科，按国家课标章节顺序更新",
+        "每个知识点 3-5 分钟，图文 + 视频双形式讲解",
+        "内容人工校对，无提分承诺、不制造焦虑",
+        "配套资料免费提供，无需注册、无广告"
+      ]
+    },
+    "forStudents": {
+      "title": "给同学",
+      "points": [
+        "抓考点、划重点、学明白，帮你把知识串成线",
+        "先在文章里看框架，再看视频听讲解",
+        "易错陷阱提前帮你标出来，少走弯路",
+        "看完做配套练习，下载资料自己练"
+      ]
+    }
+  },
   "videos": [
     {
       "id": "PROMO-V10",
@@ -31,6 +70,8 @@
       "duration": "115s",
       "date": "2026-11-20",
       "status": "local",
+      "featured": true,
+      "order": 0,
       "tags": ["课代表", "宣传片", "品牌介绍"],
       "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
     },
@@ -49,16 +90,19 @@
       "duration": "208s",
       "date": "2026-11-20",
       "status": "local",
+      "featured": true,
+      "order": 1,
       "tags": ["正数", "负数", "温度计", "相反量", "有理数"],
       "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
     }
   ],
   "mirrors": [
-    { "name": "主站", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名", "qr": true },
-    { "name": "备用站", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名", "qr": true },
-    { "name": "GitHub 底座", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座", "qr": true },
-    { "name": "CF Pages", "url": "https://kedaibiao2026.pages.dev/", "tag": "CF 源站", "qr": true },
-    { "name": "防丢失入口", "url": "go.html", "tag": "兜底页", "qr": false }
+    { "name": "主站", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名", "desc": "推荐收藏，解析最快", "qr": true },
+    { "name": "备用站", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名", "desc": "主域名打不开时用这个", "qr": true },
+    { "name": "GitHub 底座", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座", "desc": "最稳定，永远可访问", "qr": true },
+    { "name": "CF Pages 源站", "url": "https://kedaibiao2026.pages.dev/", "tag": "CF 源站", "desc": "Cloudflare 源站地址", "qr": true },
+    { "name": "备用源站", "url": "https://kedaibiao-site.pages.dev/", "tag": "CF 项目域名", "desc": "Cloudflare Pages 项目默认域名", "qr": true },
+    { "name": "防丢失入口", "url": "go.html", "tag": "兜底页", "desc": "域名变动时的总入口", "qr": false }
   ],
   "resources": [
     {
@@ -68,6 +112,9 @@
       "videoId": "MATH-J-001",
       "link": "",
       "status": "pending",
+      "fileType": "压缩包",
+      "size": "约 2MB",
+      "order": 1,
       "tags": ["正数", "负数", "七年级上"],
       "statusNote": "资料包与网盘链接待配置"
     }

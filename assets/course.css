@@ -1,7 +1,9 @@
 /* 课程详情页：文章 + 视频双栏 */
-.course-head{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:28px 0 30px}
-.course-head .back{display:inline-block;color:#aab6d4;font-size:.9rem;margin-bottom:14px}
-.course-head .back:hover{color:var(--gold)}
+.read-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--red));z-index:60;transition:width .1s linear}
+.course-head{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:24px 0 30px}
+.course-head .crumbs{display:flex;gap:8px;align-items:center;font-size:var(--fs-sm);color:#aab6d4;margin-bottom:16px;flex-wrap:wrap}
+.course-head .crumbs a:hover{color:var(--gold)}
+.course-head .crumbs [aria-current]{color:var(--gold)}
 .course-head .tags{margin-bottom:10px}
 .course-head h1{font-size:2rem;margin:6px 0}
 .course-head .lead{color:#cdd7ee;max-width:720px}
@@ -59,10 +61,23 @@
 .res-btn.off{opacity:.6;cursor:default}
 .res-note{font-size:.78rem;color:var(--muted);margin-top:6px}
 .tips-box p{font-size:.88rem;color:var(--muted);line-height:1.8}
+.res-btn.off[aria-disabled]{cursor:default}
+
+/* 课程翻页 */
+.course-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:var(--sp-5)}
+.cn-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--sh-1);transition:transform var(--t-fast),box-shadow var(--t-fast);display:block}
+.cn-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.cn-card span{font-size:var(--fs-sm);color:var(--muted)}
+.cn-card b{display:block;margin-top:4px;color:var(--navy);font-size:var(--fs-md)}
+.cn-card.next{text-align:right}
+.cn-card.prev{border-left:4px solid var(--red)}
+.cn-card.next{border-right:4px solid var(--gold)}
 
 @media(max-width:860px){
   .course-layout{grid-template-columns:1fr}
   .course-side{position:static;order:-1}
   .article{padding:22px 20px}
   .article h1{font-size:1.5rem}
+  .course-nav{grid-template-columns:1fr}
+  .cn-card.next{text-align:left;border-right:none;border-left:4px solid var(--gold)}
 }
