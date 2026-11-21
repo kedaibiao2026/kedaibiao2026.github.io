@@ -45,12 +45,35 @@ function navHTML(active){
   </div></header>`;
 }
 
+/* 视觉段落：纯文字品牌色块，零外链图片（遵循「图片走外链且不造假数据」约束，
+   当前无自有课程截图，不用第三方氛围图充数；后续有真实课程封面再在 content.json 配图）。 */
+function creditsHTML(){
+  return `${esc(DATA.site.name)} · 按课标持续更新 · 图文加短视频讲透知识点`;
+}
+function bandHTML(){
+  return `<section class="brand-band bleed">
+    <div class="bb-cell bb-navy" data-reveal><span class="bb-kicker">讲得明白</span><strong>把知识点<br>一次讲透</strong></div>
+    <div class="bb-cell bb-gold" data-reveal style="--i:1"><span class="bb-kicker">抓得住重点</span><strong>核心考点<br>一目了然</strong></div>
+    <div class="bb-cell bb-red" data-reveal style="--i:2"><span class="bb-kicker">学得有方向</span><strong>易错陷阱<br>提前避开</strong></div>
+  </section>`;
+}
 function footerHTML(){
-  return `<footer><div class="wrap">
-    <p><strong style="color:#ffd035">课代表</strong> · ${DATA.site.slogan}</p>
-    <p style="margin-top:8px">${DATA.site.updateNote||''}</p>
-    <p style="margin-top:10px"><a href="about.html#mirrors">查看全部访问地址 →</a></p>
-  </div></footer>`;
+  return `<footer>
+    <div class="foot-top">
+      <div class="foot-invite">
+        <h2 class="head">把下一个知识点，<br>交给课代表。</h2>
+        <a class="btn" href="videos.html">开始学习</a>
+      </div>
+      <div class="foot-links">
+        <a href="videos.html">课程</a>
+        <a href="resources.html">资料</a>
+        <a href="about.html">关于</a>
+        <a href="about.html#mirrors">访问地址</a>
+      </div>
+    </div>
+    <div class="foot-credit"><span>${esc(DATA.site.slogan)} · ${esc(DATA.site.updateNote||'')}</span><span>${creditsHTML()}</span></div>
+    <span class="foot-wordmark" aria-hidden="true">课代表</span>
+  </footer>`;
 }
 
 function statusBadge(v){
@@ -69,8 +92,8 @@ function videoCard(v){
       <div class="tags"><span class="tag">${esc(v.subject)}</span><span class="tag gold">${esc(v.grade)}</span>${statusBadge(v)}</div>
       <h3>${esc(v.title)}</h3>
       <p>${esc(v.desc||'')}</p>
-      <div class="meta">${v.chapter&&v.chapter!=='—'?`📖 ${esc(v.chapter)} · `:''}${v.duration?`⏱ ${esc(v.duration)} · `:''}${esc(v.date||'')}</div>
-      <span class="btn">📖 阅读课程</span>
+      <div class="meta">${v.chapter&&v.chapter!=='—'?`${esc(v.chapter)} · `:''}${v.duration?`${esc(v.duration)} · `:''}${esc(v.date||'')}</div>
+      <span class="btn">阅读课程 →</span>
     </div>
   </a>`;
 }
@@ -113,7 +136,7 @@ function playerModalHTML(){
 
 /* ---------- 搜索栏 + 筛选组件 ---------- */
 function searchBarHTML(ph,q){
-  return `<div class="searchbar"><span class="ico">🔍</span><input id="q" type="search" placeholder="${esc(ph)}" value="${esc(q)}" autocomplete="off"><button id="qclear" class="qclear" title="清除">×</button></div>`;
+  return `<div class="searchbar" data-rise><span aria-hidden="true">搜索</span><input id="q" type="search" placeholder="${esc(ph)}" value="${esc(q)}" autocomplete="off" aria-label="搜索"><button id="qclear" class="qclear" title="清除" aria-label="清除">×</button><button class="btn qgo" id="qgo" aria-label="搜索">查找 →</button></div>`;
 }
 function chipGroup(label,key,options,current){
   return `<div class="filter-row"><span class="flabel">${label}</span><div class="chips" data-key="${key}">`+
@@ -130,36 +153,49 @@ function setParam(k,v){
 
 /* ---------- 首页 ---------- */
 function renderHome(){
-  document.body.insertAdjacentHTML('afterbegin', navHTML('home'));
   const s=DATA.site, vids=DATA.videos||[], cols=DATA.collections||[];
   const live=vids.filter(v=>v.status==='live').length;
   const pts=new Set(); vids.forEach(v=>(v.tags||[]).forEach(t=>pts.add(t)));
-  const recent=[...vids].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,6);
+  const recent=[...vids].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,7);
   document.getElementById('app').innerHTML=`
-    <div class="hero">
-      <img src="${esc(s.logo)}" alt="课代表">
-      <h1>课<b>代表</b>来咯!</h1>
-      <div class="slogan">${esc(s.slogan)}</div>
-      <p>${esc(s.intro)}</p>
-      <div class="actions"><a class="btn" href="videos.html">开始学习</a><a class="btn gold" href="resources.html">找资料</a></div>
-    </div>
-    <div class="wrap">
-      <div class="stats">
-        <div><b>${vids.length}</b><span>精品课程</span></div>
-        <div><b>${pts.size}</b><span>知识点</span></div>
-        <div><b>${cols.length}</b><span>学段专辑</span></div>
-        <div><b>${live}</b><span>含视频讲解</span></div>
+    <section class="hero wrap">
+      <div class="hero-top">
+        <span class="mono">课<em>代表</em></span>
+        <span class="toplinks"><a href="videos.html">课程</a><a href="resources.html">资料</a><a href="about.html">关于</a></span>
       </div>
-    </div>
-    <section class="wrap section"><h2>最近更新</h2><div class="sub">一节课程讲透一个知识点，图文 + 视频 + 资料</div>
-      <div class="grid">${recent.map(videoCard).join('')||'<div class="empty">内容准备中，敬请期待</div>'}</div>
-      <div class="center"><a class="btn ghost" href="videos.html">查看全部课程 →</a></div>
+      <div class="hero-name lines">
+        <h1 class="display"><span class="line"><span data-line style="--i:0">抓考点</span></span><span class="line"><span class="ink2" data-line style="--i:1">学明白</span></span></h1>
+      </div>
+      <div class="hero-foot">
+        <p class="support">${esc(s.slogan)}。<br>图文加短视频，<b>3 到 5 分钟讲透一个知识点</b>。</p>
+        <a class="btn" href="videos.html" data-rise style="--i:2">开始学习 →</a>
+      </div>
     </section>
-    <section class="wrap section"><h2>按学段学</h2><div class="sub">选择学段，进入对应专辑</div>
-      <div class="grid">${cols.map(c=>`
-        <a class="card stage ${c.status==='building'?'dim':''}" href="videos.html?grade=${encodeURIComponent(c.grade)}">
-          <div class="body"><span class="tag ${c.status==='active'?'gold':''}">${c.status==='active'?'更新中':'建设中'}</span>
-          <h3>${esc(c.name)}</h3><p>${esc(c.desc)}</p></div></a>`).join('')}</div>
+
+    <section class="stats-stmt wrap">
+      <h2 class="sr-only">课程数据</h2>
+      <p class="statement" data-reveal>从小学到高中，<span class="fig">${vids.length}</span> 节课拆成 <span class="fig">${pts.size}</span> 个知识点，<span class="fig">${live}</span> 节配了视频讲解。</p>
+    </section>
+
+    ${bandHTML()}
+
+    <section class="lineup wrap">
+      <h2 class="head" style="color:var(--light);margin-bottom:.6rem" data-reveal>最近更新</h2>
+      <p class="leadline">一节课程讲透一个知识点。输入知识点即可在课程库里找到它。</p>
+      ${recent.map((v,i)=>`<div class="row" data-reveal style="--i:${i}">
+        <a class="who" href="course.html?id=${encodeURIComponent(v.id)}">${esc(v.title)}</a>
+        <span class="fmt">${esc(v.subject)}${v.chapter&&v.chapter!=='—'?' · '+esc(v.chapter):''}</span>
+        <span class="when">${esc(v.date||'')}</span>
+      </div>`).join('')||'<div class="empty">内容准备中，敬请期待</div>'}
+      <div class="center"><a class="btn ghost on-light link-under" href="videos.html">查看全部课程</a></div>
+    </section>
+
+    <section class="poster-list wrap">
+      <div class="plist-head" data-reveal>按学段学</div>
+      ${cols.map((c,i)=>`<div class="pitem" data-reveal style="--i:${i}">
+        <a class="pname" href="videos.html?grade=${encodeURIComponent(c.grade)}">${esc(c.name)}</a>
+        <p class="pdesc">${c.status==='active'?'按课标章节持续更新':''}</p>
+      </div>`).join('')}
     </section>`;
   document.body.insertAdjacentHTML('beforeend', footerHTML()+playerModalHTML());
 }
@@ -172,8 +208,8 @@ function renderVideos(){
   const subjects=['全部',...new Set((DATA.videos||[]).map(v=>v.subject).filter(Boolean))];
   const chapters=['全部',...new Set((DATA.videos||[]).map(v=>v.chapter).filter(x=>x&&x!=='—'))];
   document.getElementById('app').innerHTML=`
-    <section class="wrap section">
-      <h2>课程库</h2><div class="sub">每节课程是一篇图文讲解，内嵌视频与配套资料；按知识点查找</div>
+    <section class="wrap">
+      <div class="page-intro"><h2 class="head">课程库</h2><p class="sub">每节课程是一篇图文讲解，内嵌视频与配套资料。输入知识点即可查找。</p></div>
       ${searchBarHTML('搜索课程 / 知识点 / 章节，如：正数、温度计、七年级…', q)}
       <div class="filters">
         ${chipGroup('学段','grade',grades,grade||'全部')}
@@ -209,8 +245,8 @@ function renderResources(){
   document.body.insertAdjacentHTML('afterbegin', navHTML('resources'));
   const p=getParams(), q=p.get('q')||'';
   document.getElementById('app').innerHTML=`
-    <section class="wrap section">
-      <h2>配套资料</h2><div class="sub">资料免费提供，通过迅雷云盘领取；与课程知识点一一对应</div>
+    <section class="wrap">
+      <div class="page-intro"><h2 class="head">配套资料</h2><p class="sub">资料免费提供，通过网盘领取，与课程知识点一一对应。</p></div>
       ${searchBarHTML('搜索资料 / 知识点，如：正数、七年级…', q)}
       <div id="rstat" class="vstat"></div>
       <div class="grid" id="rgrid"></div>
@@ -232,15 +268,15 @@ function renderAbout(){
   const s=DATA.site;
   const qr=(m)=>m.qr!==false?`<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(m.url.startsWith('http')?m.url:location.origin+'/'+m.url)}" alt="二维码">`:'';
   document.getElementById('app').innerHTML=`
-    <section class="wrap section about">
-      <h2>关于课代表</h2><div class="sub">你的课堂学习小能手</div>
+    <section class="wrap about">
+      <div class="page-intro"><h2 class="head">关于课代表</h2><p class="sub">你的课堂学习小能手</p></div>
       <div class="card pad">
         <p><strong>课代表</strong>，${esc(s.intro)}</p>
         <p style="margin-top:12px">我们帮你：<b class="hl">梳理知识体系</b>、<b class="hl">讲解核心重点</b>、<b class="hl">归纳常见题型</b>、<b class="hl">分析易错陷阱</b>。</p>
         <p style="margin-top:12px">${esc(s.updateNote||'')}，配套资料免费提供。</p>
       </div>
-      <h2 style="margin-top:36px" id="mirrors">访问地址</h2>
-      <div class="sub">多个入口互为镜像，内容完全一样；任一地址打不开，请用其他地址访问</div>
+      <h2 class="head" style="margin-top:56px;font-size:var(--step-head)" id="mirrors">访问地址</h2>
+      <p class="sub" style="color:var(--ink-soft);margin-bottom:1.5rem">多个入口互为镜像，内容完全一样；任一地址打不开，请用其他地址访问</p>
       <div class="mirror-list">
         ${(DATA.mirrors||[]).map(m=>`
           <a class="mirror" href="${esc(m.url)}" target="_blank" rel="noopener">
@@ -255,10 +291,12 @@ function renderAbout(){
 
 /* ---------- 交互绑定 ---------- */
 function bindSearch(apply){
-  const inp=document.getElementById('q'), clr=document.getElementById('qclear');
+  const inp=document.getElementById('q'), clr=document.getElementById('qclear'), go=document.getElementById('qgo');
   if(!inp) return;
   let t; inp.addEventListener('input',()=>{ clearTimeout(t); t=setTimeout(()=>{ setParam('q',inp.value.trim()); apply(); },120); });
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); clearTimeout(t); setParam('q',inp.value.trim()); apply(); } });
   clr.addEventListener('click',()=>{ inp.value=''; setParam('q',''); apply(); inp.focus(); });
+  if(go) go.addEventListener('click',()=>{ clearTimeout(t); setParam('q',inp.value.trim()); apply(); inp.focus(); });
 }
 function bindChips(apply,onChange){
   document.querySelectorAll('.chips').forEach(group=>{
@@ -272,11 +310,22 @@ function bindChips(apply,onChange){
   });
 }
 
+/* ---------- 滚动入场 ---------- */
+function setupReveal(){
+  const els=document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('is-in')); return; }
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+}
+
 /* ---------- 启动 ---------- */
 async function init(page){
   try{
     await loadData();
     ({home:renderHome,videos:renderVideos,resources:renderResources,about:renderAbout}[page])();
+    setupReveal();
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="wrap section"><div class="empty">页面加载失败：${esc(e.message)}<br>请确认 content.json 可访问</div></div>`;
   }

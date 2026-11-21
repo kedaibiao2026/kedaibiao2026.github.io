@@ -1,0 +1,12 @@
+# 内部工作目录，不应部署/提交
+.visual-backup-*/
+.taste-skill/
+.wrangler/
+*.bak
+
+# 设计文档（留在本地参考，不上线）
+体系设计方案-v1.md
+官网升级设计-v2.md
+
+# 系统
+.DS_Store
