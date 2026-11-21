@@ -55,7 +55,7 @@ echo "  ✓ GitHub Pages 已推送（自动构建）"
 
 echo "▶ 2/4 部署 Cloudflare Pages（wrangler 官方工具）"
 CLOUDFLARE_EMAIL=$(cat /tmp/.kdb_cf_email) CLOUDFLARE_API_KEY=$(cat /tmp/.kdb_cf_key) \
-  "$WRANGLER" pages deploy . --project-name=kedaibiao-site --branch=master --commit-dirty=true 2>&1 | tail -8
+  "$WRANGLER" pages deploy . --project-name=kedaibiao2026 --branch=master --commit-dirty=true 2>&1 | tail -8
 echo "  ✓ Cloudflare Pages 已部署（两域名自动指向生产部署）"
 
 echo "▶ 3/4 验证访问"
