@@ -1,0 +1,82 @@
+/* 课代表品牌视觉：藏蓝 #16213e / 明黄 #ffd035 / 朱红 #e94560 / 白底网格 */
+:root{
+  --navy:#16213e; --navy2:#0f3460; --gold:#ffd035; --red:#e94560;
+  --bg:#f7f9fc; --card:#ffffff; --ink:#1a2340; --muted:#6b7691; --line:#e3e8f0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",Arial,sans-serif;
+  color:var(--ink);line-height:1.6;background-color:var(--bg);
+  background-image:linear-gradient(rgba(22,33,62,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(22,33,62,.045) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+/* 顶栏 */
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.bar{display:flex;align-items:center;gap:14px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.25rem}
+.brand img{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
+.brand b{color:var(--gold)}
+nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:20px;font-size:.95rem;color:#dfe6f5;transition:.2s}
+nav a:hover,nav a.on{background:var(--gold);color:var(--navy);font-weight:700}
+
+/* 通用区块 */
+.section{padding:44px 0}
+.section h2{font-size:1.6rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.section h2::before{content:"";width:8px;height:26px;background:var(--red);border-radius:4px}
+.section .sub{color:var(--muted);margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+
+/* 卡片 */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(22,33,62,.06);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(22,33,62,.14)}
+.card .cover{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--navy);display:block}
+.card .body{padding:16px}
+.tag{display:inline-block;font-size:.75rem;padding:3px 10px;border-radius:12px;margin-right:6px;
+  background:#eef2fb;color:var(--navy2);font-weight:600}
+.tag.gold{background:#fff4d6;color:#9a6a00}
+.tag.red{background:#fde8ec;color:#b3243c}
+.card h3{font-size:1.1rem;margin:8px 0 6px}
+.card p{color:var(--muted);font-size:.9rem;min-height:44px}
+.badge{font-size:.72rem;padding:2px 8px;border-radius:10px;background:#eee;color:#888}
+.badge.live{background:#e6f7ee;color:#17804a}
+.badge.local{background:#fff4d6;color:#9a6a00}
+
+/* 按钮 */
+.btn{display:inline-block;padding:10px 20px;border-radius:24px;font-weight:600;cursor:pointer;border:none;
+  background:linear-gradient(45deg,var(--red),#b02a8e);color:#fff;transition:.2s;font-size:.95rem}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(233,69,96,.35)}
+.btn.gold{background:linear-gradient(45deg,#f5a623,var(--gold));color:var(--navy)}
+
+/* 英雄区 */
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;text-align:center;padding:60px 20px}
+.hero img{width:120px;height:120px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;margin-bottom:18px}
+.hero h1{font-size:2.4rem;margin-bottom:10px}
+.hero h1 b{color:var(--gold)}
+.hero .slogan{font-size:1.15rem;color:var(--gold);letter-spacing:2px;margin-bottom:16px}
+.hero p{max-width:640px;margin:0 auto 24px;color:#cdd7ee}
+.hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* 播放器弹窗 */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal.on{display:flex}
+.modal-box{background:#fff;border-radius:14px;width:min(900px,100%);overflow:hidden}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:var(--navy);color:#fff}
+.modal-head button{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+.player{width:100%;aspect-ratio:16/9;border:0}
+
+/* 页脚 */
+footer{background:var(--navy);color:#aab6d4;text-align:center;padding:28px 20px;margin-top:40px;font-size:.9rem}
+footer a{color:var(--gold)}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+
+@media(max-width:640px){
+  .hero h1{font-size:1.8rem}
+  nav a{padding:6px 10px;font-size:.85rem}
+  .brand{font-size:1.05rem}
+}

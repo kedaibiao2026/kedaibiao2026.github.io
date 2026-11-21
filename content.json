@@ -1,0 +1,62 @@
+{
+  "site": {
+    "name": "课代表",
+    "logo": "assets/avatar.jpg",
+    "slogan": "抓考点 · 划重点 · 学明白",
+    "intro": "把每节课的知识点讲得明明白白。覆盖小学到高中各学科，风趣幽默，按课标持续更新。",
+    "bilibili": "",
+    "wechat": "",
+    "backupPage": "go.html",
+    "note": "内容清单单一真源：新增/修改内容只改本文件，网站自动读取展示。视频外链用B站bvid，资料外链用网盘分享链接。"
+  },
+  "collections": [
+    { "id": "MATH-J", "name": "初中数学", "desc": "按课标章节顺序，一个视频讲透一个知识点", "grade": "初中" },
+    { "id": "MATH-P", "name": "小学数学", "desc": "正在建设中", "grade": "小学" },
+    { "id": "MATH-H", "name": "高中数学", "desc": "正在建设中", "grade": "高中" }
+  ],
+  "videos": [
+    {
+      "id": "PROMO-V10",
+      "title": "课代表账号宣传片",
+      "desc": "三分钟认识课代表：我们是谁、分享什么、怎么帮你学明白。",
+      "subject": "品牌",
+      "grade": "全部",
+      "chapter": "—",
+      "cover": "assets/avatar.jpg",
+      "player": "bilibili",
+      "bvid": "",
+      "backup_mp4": "",
+      "duration": "115s",
+      "date": "2026-11-20",
+      "status": "local",
+      "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
+    },
+    {
+      "id": "MATH-J-001",
+      "title": "正数与负数",
+      "desc": "从温度计认识正负数，讲清定义、相反量与易错点。",
+      "subject": "数学",
+      "grade": "初中",
+      "chapter": "七年级上",
+      "cover": "assets/avatar.jpg",
+      "player": "bilibili",
+      "bvid": "",
+      "backup_mp4": "",
+      "duration": "208s",
+      "date": "2026-11-20",
+      "status": "local",
+      "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
+    }
+  ],
+  "resources": [
+    {
+      "id": "RES-J-001",
+      "title": "正数与负数 · 配套资料包",
+      "desc": "知识清单 + 练习题 + 思维导图",
+      "videoId": "MATH-J-001",
+      "link": "",
+      "status": "pending",
+      "statusNote": "资料包与网盘链接待配置"
+    }
+  ]
+}

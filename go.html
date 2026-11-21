@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="avatar.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>课代表 · 导航页</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+        display: flex; align-items: center; justify-content: center;
+        min-height: 100vh; background-color: #1a1a2e; color: #e0e0e0;
+        overflow: hidden;
+      }
+      #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+      .container {
+        position: relative; z-index: 2; text-align: center; padding: 40px 30px;
+        background: rgba(27, 27, 43, 0.5); border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        max-width: 90%; width: 600px; animation: fadeIn 1s ease-out;
+      }
+      .avatar {
+        width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
+        display: block; border: 3px solid rgba(255,255,255,0.5);
+        object-fit: cover; animation: float 4s ease-in-out infinite;
+      }
+      h1 {
+        font-size: 2.2em; margin-bottom: 15px; color: #fff; font-weight: 700;
+        display: flex; justify-content: center; min-height: 40px;
+      }
+      h1 span {
+        display: inline-block; animation: wave 1.8s infinite;
+        animation-delay: calc(0.1s * var(--i));
+      }
+      .tip { font-size: 1em; margin-bottom: 20px; color: #f9a825; animation: fadeIn 2s 1s backwards; }
+      p { font-size: 1.1em; margin-bottom: 25px; color: #c0c0c0; animation: fadeIn 2s 1.5s backwards; }
+      .links p { margin-bottom: 10px; }
+      .links a { color: #82aaff; text-decoration: none; transition: color 0.3s; word-break: break-all; }
+      .links a:hover { color: #b3caff; }
+      .btn {
+        font-size: 1.1em; text-decoration: none;
+        background: linear-gradient(45deg, #e94560, #8a2be2); color: #fff;
+        padding: 12px 25px; border: none; border-radius: 50px;
+        transition: all 0.3s ease; margin: 10px; display: inline-block;
+        cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 500;
+      }
+      .btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+      .countdown { font-size: 1.2em; margin-top: 25px; color: #fff; font-weight: 500; }
+      @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+      @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-15px); } }
+      @keyframes wave {
+        0%,40%,100% { transform:translateY(0); text-shadow:0 0 5px rgba(255,255,255,0.5); }
+        20% { transform:translateY(-15px); text-shadow:0 0 20px #fff,0 0 30px #82aaff,0 0 40px #82aaff; }
+      }
+      .modal {
+        position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
+        display:flex; align-items:center; justify-content:center;
+        visibility:hidden; opacity:0; transition:opacity 0.3s, visibility 0.3s; z-index:100;
+      }
+      .modal.active { visibility:visible; opacity:1; }
+      .modal-content {
+        background:#1b1b2b; color:#e0e0e0; padding:30px; border-radius:10px;
+        text-align:center; max-width:80%; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+        border:1px solid rgba(255,255,255,0.1);
+      }
+      .modal-content p { font-size:1.2em; margin-bottom:20px; color:#fff; }
+      .modal-content .close-btn {
+        background:#e94560; color:#fff; border:none; padding:10px 20px;
+        border-radius:20px; cursor:pointer; transition:background 0.3s;
+      }
+      .modal-content .close-btn:hover { background:#c63a50; }
+      @media (max-width:768px) {
+        .container { padding:30px 20px; width:90%; }
+        .avatar { width:100px; height:100px; }
+        h1 { font-size:1.8em; min-height:35px; }
+        .tip { font-size:0.9em; }
+        p { font-size:1em; }
+        .btn { padding:10px 20px; font-size:1em; margin:8px; }
+      }
+      @media (max-width:480px) { .btn { display:block; width:80%; margin:10px auto; } }
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="container">
+      <img class="avatar" src="avatar.jpg" alt="课代表头像" />
+      <h1>
+        <span style="--i: 1">即</span><span style="--i: 2">将</span><span style="--i: 3">进</span><span style="--i: 4">入</span><span style="--i: 5">.</span><span style="--i: 6">.</span><span style="--i: 7">.</span>
+      </h1>
+      <div class="tip">📢 域名可能变动，建议收藏此导航页！</div>
+      <div class="links" style="margin-bottom: 20px">
+        <p><a href="https://kedaibiao.ccwu.cc/" target="_blank" rel="noopener noreferrer">https://kedaibiao.ccwu.cc/</a></p>
+        <p><a href="https://kedaibiao2026.cc.cd/" target="_blank" rel="noopener noreferrer">https://kedaibiao2026.cc.cd/</a></p>
+      </div>
+      <div>
+        <a id="manualLink" class="btn" href="#">手动跳转</a>
+        <span id="bookmarkBtn" class="btn">收藏本页</span>
+      </div>
+      <div class="countdown">5秒后自动跳转</div>
+    </div>
+
+    <div id="bookmarkModal" class="modal">
+      <div class="modal-content">
+        <p>请按 Ctrl+D (Windows) 或 Command+D (Mac) 收藏此页面。</p>
+        <button class="close-btn" id="closeModalBtn">关闭</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+      if (window.particlesJS) {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value:80, density:{ enable:true, value_area:800 } },
+            color: { value:"#ffffff" },
+            shape: { type:"circle", stroke:{ width:0, color:"#000000" }, polygon:{ nb_sides:5 } },
+            opacity: { value:0.5, random:false, anim:{ enable:false } },
+            size: { value:3, random:true, anim:{ enable:false } },
+            line_linked: { enable:true, distance:150, color:"#ffffff", opacity:0.4, width:1 },
+            move: { enable:true, speed:2, direction:"none", random:false, straight:false, out_mode:"out", bounce:false }
+          },
+          interactivity: {
+            detect_on:"canvas",
+            events: { onhover:{ enable:true, mode:"grab" }, onclick:{ enable:true, mode:"push" }, resize:true },
+            modes: { grab:{ distance:140, line_opacity:1 }, push:{ particles_nb:4 } }
+          },
+          retina_detect: true
+        });
+      }
+      // 目标地址：只改这里即可应对域名变动（防丢失页的核心）
+      const targetUrls = [
+        "https://kedaibiao.ccwu.cc/",
+        "https://kedaibiao2026.cc.cd/"
+      ];
+      const targetUrl = targetUrls[Math.floor(Math.random() * targetUrls.length)];
+      document.getElementById("manualLink").href = targetUrl;
+      let seconds = 5;
+      const countdownElement = document.querySelector(".countdown");
+      const timer = setInterval(() => {
+        if (seconds > 1) { seconds--; countdownElement.textContent = seconds + "秒后自动跳转"; }
+        else { clearInterval(timer); window.location.href = targetUrl; }
+      }, 1000);
+      const bookmarkBtn = document.getElementById("bookmarkBtn");
+      const bookmarkModal = document.getElementById("bookmarkModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      bookmarkBtn.addEventListener("click", function () {
+        if (window.external && "AddFavorite" in window.external) { window.external.AddFavorite(location.href, document.title); }
+        else { bookmarkModal.classList.add("active"); }
+      });
+      closeModalBtn.addEventListener("click", function () { bookmarkModal.classList.remove("active"); });
+      bookmarkModal.addEventListener("click", function (e) { if (e.target === bookmarkModal) bookmarkModal.classList.remove("active"); });
+    </script>
+  </body>
+</html>
