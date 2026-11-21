@@ -42,8 +42,9 @@ open('/tmp/.kdb_cf_key','w').write(next(v for k,v in f.items() if 'Global' in k)
 chmod 600 /tmp/.kdb_gh /tmp/.kdb_cf_email /tmp/.kdb_cf_key
 echo "  ✓ 凭证已取（内存/临时文件，退出即删）"
 
-echo "▶ 1/4 提交 + 推送 GitHub Pages"
+echo "▶ 1/4 校验数据 + 提交推送 GitHub Pages"
 cd "$SITE_DIR"
+python3 validate.py || { echo "✗ 数据校验失败，已停止部署"; exit 1; }
 git add -A
 if git diff --cached --quiet; then echo "  · 无新改动，跳过 commit"; else
   git -c user.email="kedaibiao2026@users.noreply.github.com" -c user.name="课代表" commit -qm "$MSG"

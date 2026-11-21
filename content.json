@@ -7,12 +7,13 @@
     "bilibili": "",
     "wechat": "",
     "backupPage": "go.html",
-    "note": "内容清单单一真源：新增/修改内容只改本文件，网站自动读取展示。视频外链用B站bvid，资料外链用网盘分享链接。"
+    "updateNote": "按课标持续更新 · 每个知识点 3-5 分钟 · 人工校对",
+    "note": "内容清单单一真源：新增/修改内容只改本文件，网站自动读取展示。视频外链用B站bvid，资料外链用网盘链接。"
   },
   "collections": [
-    { "id": "MATH-J", "name": "初中数学", "desc": "按课标章节顺序，一个视频讲透一个知识点", "grade": "初中" },
-    { "id": "MATH-P", "name": "小学数学", "desc": "正在建设中", "grade": "小学" },
-    { "id": "MATH-H", "name": "高中数学", "desc": "正在建设中", "grade": "高中" }
+    { "id": "MATH-J", "name": "初中数学", "desc": "按课标章节顺序，一个视频讲透一个知识点", "grade": "初中", "status": "active" },
+    { "id": "MATH-P", "name": "小学数学", "desc": "正在建设中，敬请期待", "grade": "小学", "status": "building" },
+    { "id": "MATH-H", "name": "高中数学", "desc": "正在建设中，敬请期待", "grade": "高中", "status": "building" }
   ],
   "videos": [
     {
@@ -29,6 +30,7 @@
       "duration": "115s",
       "date": "2026-11-20",
       "status": "local",
+      "tags": ["课代表", "宣传片", "品牌介绍"],
       "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
     },
     {
@@ -45,14 +47,15 @@
       "duration": "208s",
       "date": "2026-11-20",
       "status": "local",
+      "tags": ["正数", "负数", "温度计", "相反量", "有理数"],
       "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
     }
   ],
   "mirrors": [
-    { "name": "主站 · kedaibiao.ccwu.cc", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名" },
-    { "name": "备用 · kedaibiao2026.cc.cd", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名" },
-    { "name": "GitHub 底座 · kedaibiao2026.github.io", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座" },
-    { "name": "防丢失入口 · 本站/go.html", "url": "go.html", "tag": "兜底页" }
+    { "name": "主站", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名", "qr": true },
+    { "name": "备用站", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名", "qr": true },
+    { "name": "GitHub 底座", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座", "qr": true },
+    { "name": "防丢失入口", "url": "go.html", "tag": "兜底页", "qr": false }
   ],
   "resources": [
     {
@@ -62,6 +65,7 @@
       "videoId": "MATH-J-001",
       "link": "",
       "status": "pending",
+      "tags": ["正数", "负数", "七年级上"],
       "statusNote": "资料包与网盘链接待配置"
     }
   ]
