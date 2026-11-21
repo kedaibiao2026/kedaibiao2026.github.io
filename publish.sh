@@ -25,8 +25,19 @@ found.update({'title':title,'bvid':bvid,'grade':grade,'subject':subject,'chapter
   'desc':desc or found.get('desc',''),'date':datetime.date.today().isoformat(),
   'status':'live','tags':[t.strip() for t in tags.split(',') if t.strip()]})
 found.pop('statusNote',None)
+# 若无文章则生成骨架
+art=found.get('article') or f'articles/{id}.md'
+found['article']=art
+import os
+if not os.path.exists(art):
+    os.makedirs('articles',exist_ok=True)
+    related=[r['id'] for r in d.get('resources',[]) if r.get('videoId')==id]
+    res_md='\n'.join(f'{{{{RESOURCE:{r}}}}}' for r in related) or '_（配套资料整理中）_'
+    skeleton=f"# {title}\n\n> {desc or '这节课我们来学习'+title+'。'}\n\n{{{{VIDEO:{id}}}}}\n\n## 课程要点\n\n（在这里补充正文：概念讲解、例题分析、易错点…）\n\n## 课堂小结\n\n1. 要点一\n2. 要点二\n\n{res_md}\n\n---\n\n_配套资料通过迅雷云盘免费领取。_\n"
+    open(art,'w',encoding='utf-8').write(skeleton)
+    print(f'  ✓ 文章骨架已生成: {art}')
 json.dump(d,open('content.json','w',encoding='utf-8'),ensure_ascii=False,indent=2)
-print(f'  ✓ content.json 已写入（{len(vids)} 条视频）')
+print(f'  ✓ content.json 已写入（{len(vids)} 节课程）')
 PYEOF
 
 if [ -n "$COVER_SRC" ] && [ -f "$COVER_SRC" ]; then

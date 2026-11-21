@@ -38,7 +38,7 @@ function matchQuery(item, q){
 
 /* ---------- 公共 UI ---------- */
 function navHTML(active){
-  const links=[['index.html','首页','home'],['videos.html','视频','videos'],['resources.html','资料','resources'],['about.html','关于','about']];
+  const links=[['index.html','首页','home'],['videos.html','课程','videos'],['resources.html','资料','resources'],['about.html','关于','about']];
   return `<header><div class="wrap bar">
     <a class="brand" href="index.html"><img src="${DATA.site.logo}" alt=""><span>课<b>代表</b></span></a>
     <nav>${links.map(([h,t,k])=>`<a href="${h}" class="${active===k?'on':''}">${t}</a>`).join('')}</nav>
@@ -63,19 +63,16 @@ function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 
 /* ---------- 视频卡片 ---------- */
 function videoCard(v){
-  const playable = v.status==='live' && v.bvid;
-  return `<article class="card">
+  return `<a class="card" href="course.html?id=${encodeURIComponent(v.id)}">
     <img class="cover" src="${esc(v.cover)}" alt="${esc(v.title)}" loading="lazy">
     <div class="body">
       <div class="tags"><span class="tag">${esc(v.subject)}</span><span class="tag gold">${esc(v.grade)}</span>${statusBadge(v)}</div>
       <h3>${esc(v.title)}</h3>
       <p>${esc(v.desc||'')}</p>
       <div class="meta">${v.chapter&&v.chapter!=='—'?`📖 ${esc(v.chapter)} · `:''}${v.duration?`⏱ ${esc(v.duration)} · `:''}${esc(v.date||'')}</div>
-      ${playable
-        ? `<button class="btn" onclick="openPlayer('${esc(v.bvid)}','${esc(v.title).replace(/'/g,"\\'")}')">▶ 立即播放</button>`
-        : `<button class="btn ghost" disabled title="${esc(v.statusNote||'')}">即将上线</button>`}
+      <span class="btn">📖 阅读课程</span>
     </div>
-  </article>`;
+  </a>`;
 }
 
 function resourceCard(r){
@@ -148,15 +145,15 @@ function renderHome(){
     </div>
     <div class="wrap">
       <div class="stats">
-        <div><b>${vids.length}</b><span>上线视频</span></div>
+        <div><b>${vids.length}</b><span>精品课程</span></div>
         <div><b>${pts.size}</b><span>知识点</span></div>
         <div><b>${cols.length}</b><span>学段专辑</span></div>
-        <div><b>${live}</b><span>可在线播放</span></div>
+        <div><b>${live}</b><span>含视频讲解</span></div>
       </div>
     </div>
-    <section class="wrap section"><h2>最近更新</h2><div class="sub">一个视频讲透一个知识点</div>
+    <section class="wrap section"><h2>最近更新</h2><div class="sub">一节课程讲透一个知识点，图文 + 视频 + 资料</div>
       <div class="grid">${recent.map(videoCard).join('')||'<div class="empty">内容准备中，敬请期待</div>'}</div>
-      <div class="center"><a class="btn ghost" href="videos.html">查看全部视频 →</a></div>
+      <div class="center"><a class="btn ghost" href="videos.html">查看全部课程 →</a></div>
     </section>
     <section class="wrap section"><h2>按学段学</h2><div class="sub">选择学段，进入对应专辑</div>
       <div class="grid">${cols.map(c=>`
@@ -176,8 +173,8 @@ function renderVideos(){
   const chapters=['全部',...new Set((DATA.videos||[]).map(v=>v.chapter).filter(x=>x&&x!=='—'))];
   document.getElementById('app').innerHTML=`
     <section class="wrap section">
-      <h2>视频库</h2><div class="sub">按知识点查找，点击播放（B站外链，本站不存视频）</div>
-      ${searchBarHTML('搜索知识点 / 标题 / 章节，如：正数、温度计、七年级…', q)}
+      <h2>课程库</h2><div class="sub">每节课程是一篇图文讲解，内嵌视频与配套资料；按知识点查找</div>
+      ${searchBarHTML('搜索课程 / 知识点 / 章节，如：正数、温度计、七年级…', q)}
       <div class="filters">
         ${chipGroup('学段','grade',grades,grade||'全部')}
         ${chipGroup('学科','subject',subjects,subject||'全部')}
@@ -200,9 +197,9 @@ function renderVideos(){
     if(sort==='old') items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));
     else if(sort==='title') items.sort((a,b)=>a.title.localeCompare(b.title,'zh'));
     else items.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-    document.getElementById('vstat').innerHTML=`共 <b>${items.length}</b> 个视频${qv?` · 匹配「${esc(qv)}」`:''}`;
+    document.getElementById('vstat').innerHTML=`共 <b>${items.length}</b> 节课程${qv?` · 匹配「${esc(qv)}」`:''}`;
     document.getElementById('vgrid').innerHTML=items.map(i=>videoCard(i.ref)).join('')||
-      '<div class="empty">没有匹配的视频，试试清除筛选条件</div>';
+      '<div class="empty">没有匹配的课程，试试清除筛选条件</div>';
   };
   bindSearch(apply); bindChips(apply, (k,v)=>setParam(k,v)); apply();
 }
@@ -213,7 +210,7 @@ function renderResources(){
   const p=getParams(), q=p.get('q')||'';
   document.getElementById('app').innerHTML=`
     <section class="wrap section">
-      <h2>配套资料</h2><div class="sub">资料免费提供，通过网盘领取；与视频知识点一一对应</div>
+      <h2>配套资料</h2><div class="sub">资料免费提供，通过迅雷云盘领取；与课程知识点一一对应</div>
       ${searchBarHTML('搜索资料 / 知识点，如：正数、七年级…', q)}
       <div id="rstat" class="vstat"></div>
       <div class="grid" id="rgrid"></div>

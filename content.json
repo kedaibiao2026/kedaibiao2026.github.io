@@ -27,6 +27,7 @@
       "player": "bilibili",
       "bvid": "",
       "backup_mp4": "",
+      "article": "articles/PROMO-V10.md",
       "duration": "115s",
       "date": "2026-11-20",
       "status": "local",
@@ -44,6 +45,7 @@
       "player": "bilibili",
       "bvid": "",
       "backup_mp4": "",
+      "article": "articles/MATH-J-001.md",
       "duration": "208s",
       "date": "2026-11-20",
       "status": "local",
@@ -55,6 +57,7 @@
     { "name": "主站", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名", "qr": true },
     { "name": "备用站", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名", "qr": true },
     { "name": "GitHub 底座", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座", "qr": true },
+    { "name": "CF Pages", "url": "https://kedaibiao-site.pages.dev/", "tag": "CF 源站", "qr": true },
     { "name": "防丢失入口", "url": "go.html", "tag": "兜底页", "qr": false }
   ],
   "resources": [

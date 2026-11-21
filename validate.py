@@ -29,6 +29,12 @@ def check():
         if v.get('bvid') and not re.match(r'^BV[0-9A-Za-z]+$', v['bvid']):
             warns.append(f'视频 {vid} bvid 格式存疑: {v.get("bvid")}')
         if not isinstance(v.get('tags',[]), list): errs.append(f'视频 {vid} tags 非数组')
+        art=v.get('article','')
+        if art:
+            import os
+            if not os.path.exists(art): errs.append(f'视频 {vid} 文章文件不存在: {art}')
+        else:
+            warns.append(f'视频 {vid} 无 article 字段（课程详情页将用简版）')
 
     # resource 关联 video 是否存在
     vids = {v.get('id') for v in d.get('videos',[])}
