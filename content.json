@@ -48,6 +48,12 @@
       "statusNote": "成片已完成，待上传B站后填入 bvid 即可在线播放"
     }
   ],
+  "mirrors": [
+    { "name": "主站 · kedaibiao.ccwu.cc", "url": "https://kedaibiao.ccwu.cc/", "tag": "主域名" },
+    { "name": "备用 · kedaibiao2026.cc.cd", "url": "https://kedaibiao2026.cc.cd/", "tag": "备用域名" },
+    { "name": "GitHub 底座 · kedaibiao2026.github.io", "url": "https://kedaibiao2026.github.io/", "tag": "稳定底座" },
+    { "name": "防丢失入口 · 本站/go.html", "url": "go.html", "tag": "兜底页" }
+  ],
   "resources": [
     {
       "id": "RES-J-001",

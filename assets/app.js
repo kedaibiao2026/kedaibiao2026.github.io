@@ -22,15 +22,20 @@ function navHTML(active){
   </div></header>`;
 }
 
+function mirrorLinksHTML(){
+  return (DATA.mirrors||[]).map(m=>
+    `<a href="${m.url}" target="_blank" rel="noopener" title="${m.tag}">${m.name}</a>`
+  ).join('<span style="color:#5a6690;margin:0 6px">·</span>');
+}
+
 function footerHTML(){
   const s = DATA.site;
   return `<footer><div class="wrap">
     <p><strong style="color:#ffd035">课代表</strong> · ${s.slogan}</p>
     <p style="margin-top:8px">${s.intro}</p>
-    <p style="margin-top:10px">
-      ${s.bilibili?`<a href="${s.bilibili}" target="_blank">B站</a> · `:''}
-      <a href="${s.backupPage}">备用入口</a> · 按课标持续更新
-    </p>
+    <p style="margin-top:12px;font-size:.85rem;color:#8894b8">访问地址（互为镜像，任一打不开可换其他）：</p>
+    <p style="margin-top:4px;font-size:.85rem">${mirrorLinksHTML()}</p>
+    ${s.bilibili?`<p style="margin-top:10px"><a href="${s.bilibili}" target="_blank">B站</a></p>`:''}
   </div></footer>`;
 }
 
@@ -106,6 +111,17 @@ function renderHome(){
           <span class="tag gold">${c.grade}</span>
           <h3>${c.name}</h3><p>${c.desc}</p>
         </div></div>`).join('')}</div>
+    </div>
+    <div class="wrap section">
+      <h2>访问地址</h2>
+      <div class="sub">多个入口互为镜像，任一地址打不开时请用其他地址访问，内容完全一样</div>
+      <div class="grid">${(DATA.mirrors||[]).map(m=>`
+        <a class="card" href="${m.url}" target="_blank" rel="noopener" style="display:block">
+          <div class="body">
+            <span class="tag">${m.tag}</span>
+            <h3 style="word-break:break-all;font-size:1rem;margin-top:8px">${m.name}</h3>
+          </div>
+        </a>`).join('')}</div>
     </div>`;
   document.body.insertAdjacentHTML('beforeend', footerHTML()+playerModalHTML());
 }
