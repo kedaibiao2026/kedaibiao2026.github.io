@@ -126,3 +126,31 @@ footer a{color:var(--gold)}
   .filter-row{align-items:flex-start;flex-direction:column;gap:6px}
   .mirror{flex-direction:column;text-align:center}
 }
+
+/* ===== v3 优化样张新增样式 ===== */
+/* 首屏头像微动效（CSS驱动，尊重减少动效） */
+.hero-mascot{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.hero:hover .hero-mascot{transform:rotate(-6deg) translateY(-4px) scale(1.04)}
+@media (prefers-reduced-motion:reduce){.hero:hover .hero-mascot{transform:none}}
+
+/* 学习路径三步 */
+.steps{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+.step{display:flex;align-items:center;gap:14px;flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 16px rgba(22,33,62,.06)}
+.step-no{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:1.3rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step:nth-child(3) .step-no{background:var(--red);color:#fff}
+.step:nth-child(5) .step-no{background:var(--gold);color:var(--navy)}
+.step h4{font-size:1.05rem;margin-bottom:2px;color:var(--ink)}
+.step p{font-size:.88rem;color:var(--muted);margin:0}
+.step-arrow{color:var(--muted);font-size:1.4rem;flex-shrink:0}
+
+/* 课程卡封面角标 */
+.lesson-cover{position:relative}
+.cover-badges{position:absolute;left:10px;bottom:10px;display:flex;gap:6px}
+.cb{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;color:#fff}
+.cb-text{background:rgba(22,33,62,.88)}
+.cb-video{background:var(--red)}
+
+@media(max-width:640px){
+  .steps{flex-direction:column;align-items:stretch}
+  .step-arrow{transform:rotate(90deg);align-self:center;margin:-6px 0}
+}

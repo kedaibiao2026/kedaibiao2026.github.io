@@ -63,14 +63,17 @@ function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 
 /* ---------- 视频卡片 ---------- */
 function videoCard(v){
-  return `<a class="card" href="course.html?id=${encodeURIComponent(v.id)}">
-    <img class="cover" src="${esc(v.cover)}" alt="${esc(v.title)}" loading="lazy">
+  const hasVideo = v.status==='live' && v.bvid;
+  return `<a class="card lesson" href="course.html?id=${encodeURIComponent(v.id)}">
+    <div class="lesson-cover"><img class="cover" src="${esc(v.cover)}" alt="${esc(v.title)}" loading="lazy">
+      <span class="cover-badges"><span class="cb cb-text">图文</span>${hasVideo?'<span class="cb cb-video">视频</span>':''}</span>
+    </div>
     <div class="body">
       <div class="tags"><span class="tag">${esc(v.subject)}</span><span class="tag gold">${esc(v.grade)}</span>${statusBadge(v)}</div>
       <h3>${esc(v.title)}</h3>
       <p>${esc(v.desc||'')}</p>
       <div class="meta">${v.chapter&&v.chapter!=='—'?`📖 ${esc(v.chapter)} · `:''}${v.duration?`⏱ ${esc(v.duration)} · `:''}${esc(v.date||'')}</div>
-      <span class="btn">📖 阅读课程</span>
+      <span class="btn">阅读课程 →</span>
     </div>
   </a>`;
 }
@@ -137,7 +140,7 @@ function renderHome(){
   const recent=[...vids].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,6);
   document.getElementById('app').innerHTML=`
     <div class="hero">
-      <img src="${esc(s.logo)}" alt="课代表">
+      <img class="hero-mascot" src="${esc(s.logo)}" alt="课代表">
       <h1>课<b>代表</b>来咯!</h1>
       <div class="slogan">${esc(s.slogan)}</div>
       <p>${esc(s.intro)}</p>
@@ -151,6 +154,15 @@ function renderHome(){
         <div><b>${live}</b><span>含视频讲解</span></div>
       </div>
     </div>
+    <section class="wrap section"><h2>怎么学</h2>
+      <div class="steps">
+        <div class="step"><span class="step-no">1</span><div><h4>选知识点</h4><p>按学段找到要学的那一课</p></div></div>
+        <div class="step-arrow">→</div>
+        <div class="step"><span class="step-no">2</span><div><h4>看图文 + 视频</h4><p>3-5 分钟讲透，边看边学</p></div></div>
+        <div class="step-arrow">→</div>
+        <div class="step"><span class="step-no">3</span><div><h4>领资料练习</h4><p>网盘免费领取，巩固所学</p></div></div>
+      </div>
+    </section>
     <section class="wrap section"><h2>最近更新</h2><div class="sub">一节课程讲透一个知识点，图文 + 视频 + 资料</div>
       <div class="grid">${recent.map(videoCard).join('')||'<div class="empty">内容准备中，敬请期待</div>'}</div>
       <div class="center"><a class="btn ghost" href="videos.html">查看全部课程 →</a></div>
