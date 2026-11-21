@@ -53,10 +53,17 @@ TOK=$(cat /tmp/.kdb_gh)
 git push "https://x-access-token:${TOK}@github.com/${REPO}.git" master 2>&1 | tail -3
 echo "  ✓ GitHub Pages 已推送（自动构建）"
 
-echo "▶ 2/4 部署 Cloudflare Pages（wrangler 官方工具）"
+echo "▶ 2/4 部署 Cloudflare Pages（wrangler 官方工具，仅上线站点文件）"
+# 用干净临时目录，排除内部备份/设计文档/配置，避免误传
+STAGE=/tmp/.kdb_stage; rm -rf "$STAGE"; mkdir -p "$STAGE"
+cd "$SITE_DIR"
+git ls-files -z | while IFS= read -r -d '' f; do mkdir -p "$STAGE/$(dirname "$f")"; cp "$f" "$STAGE/$f"; done
+cd "$STAGE"
 CLOUDFLARE_EMAIL=$(cat /tmp/.kdb_cf_email) CLOUDFLARE_API_KEY=$(cat /tmp/.kdb_cf_key) \
-  "$WRANGLER" pages deploy . --project-name=kedaibiao2026 --branch=master --commit-dirty=true 2>&1 | tail -8
-echo "  ✓ Cloudflare Pages 已部署（两域名自动指向生产部署）"
+  "$WRANGLER" pages deploy . --project-name=kedaibiao2026 --branch=master 2>&1 | tail -8
+rm -rf "$STAGE"
+cd "$SITE_DIR"
+echo "  ✓ Cloudflare Pages 已部署（仅站点文件，两域名自动指向生产部署）"
 
 echo "▶ 3/4 验证访问"
 for u in https://kedaibiao2026.github.io/ https://kedaibiao2026.cc.cd/; do
