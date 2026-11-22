@@ -282,7 +282,7 @@ function renderAbout(){
   const layerHTML=(obj,cls,ico)=>obj?`<div class="layer ${cls}"><h3>${ico} ${esc(obj.title)}</h3><ul>${(obj.points||[]).map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>`:'';
   document.getElementById('app').innerHTML=`
     <section class="wrap section about reveal">
-      <h2>关于课代表</h2><div class="sub">你的课堂学习小伙伴 · 免费分享，一起学明白</div>
+      <h2>关于课代表</h2><div class="sub">你的课堂学习小伙伴 · 免费分享，一起稳得分</div>
       <div class="card pad">
         <p><strong>课代表</strong>，${esc(s.intro)}</p>
         <p style="margin-top:12px">口号：<b class="hl">${esc(s.slogan)}</b>——帮你梳理知识体系、讲解核心重点、归纳常见题型、分析易错陷阱。</p>
