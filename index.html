@@ -27,8 +27,10 @@
     /* 三个炫酷入口：并排卡片，宽度自适应，不再铺满整行 */
     .sites{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:min(680px,100%);margin-bottom:28px}
     .site-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;
-      padding:20px 12px 18px;border-radius:18px;background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      padding:20px 12px 18px;border-radius:18px;
+      background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,.10),rgba(255,255,255,.03));
+      border:1px solid transparent;box-shadow:0 8px 30px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
       transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;
       animation:cardIn .7s both;overflow:hidden}
     .site-card:nth-child(1){animation-delay:.05s}.site-card:nth-child(2){animation-delay:.15s}.site-card:nth-child(3){animation-delay:.25s}
@@ -51,7 +53,8 @@
     .sponsor{width:min(680px,100%);margin-bottom:24px;animation:cardIn .8s .3s both}
     .sponsor .st{font-size:.9rem;color:#ffd035;margin-bottom:12px;font-weight:600}
     .qr-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
-    .qr-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;
+    .qr-card{background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,.09),rgba(255,255,255,.03));
+      border:1px solid transparent;box-shadow:0 8px 30px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.06);border-radius:14px;
       padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#c9d4ee;font-size:.82rem;
       transition:transform .3s,box-shadow .3s}
     .qr-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
