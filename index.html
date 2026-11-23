@@ -1,24 +1,101 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>课代表 · 抓考点，划重点，稳得分</title>
-  <meta name="description" content="课代表：图文加短视频，3到5分钟讲透一个知识点。覆盖小学到高中各学科，按课标持续更新，配套资料免费领取。">
-  <meta name="keywords" content="课代表,知识点讲解,初中数学,小学数学,高中数学,正数与负数,学习资料">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="课代表 · 抓考点，划重点，稳得分">
-  <meta property="og:description" content="图文加短视频，3到5分钟讲透一个知识点，配套资料免费领取。">
-  <meta property="og:image" content="assets/promo-cover.jpg">
-  <meta name="theme-color" content="#16213e">
-  <link rel="icon" href="assets/avatar.jpg">
-  <link rel="stylesheet" href="assets/style.css">
-  <script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课代表 · 永久收藏页（防丢失）</title>
+<meta name="description" content="课代表全站永久收藏页。收藏本页，任何域名变动都能从这里找到全部入口。抓考点，划重点，稳得分。">
+<link rel="icon" href="assets/avatar.jpg">
+<style>
+  /* 零外部依赖：不加载任何 CDN/字体/脚本框架，纯静态即可显示全部地址，真正防丢失 */
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{min-height:100vh;background:radial-gradient(1200px 600px at 50% -10%,#1d2c58 0%,#0f1830 60%);color:#e8edf7;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB",Arial,sans-serif;
+    display:flex;align-items:flex-start;justify-content:center;padding:clamp(20px,5vw,56px) 14px;line-height:1.6}
+  .box{width:min(680px,100%);background:linear-gradient(160deg,#18254a,#111c38);border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;padding:clamp(24px,5vw,44px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .brand img{width:66px;height:66px;border-radius:50%;border:3px solid #ffd035;object-fit:cover;flex-shrink:0}
+  .brand h1{font-size:clamp(1.35rem,4vw,1.9rem);color:#fff;letter-spacing:.5px}
+  .brand h1 b{color:#ffd035}
+  .slogan{color:#ffd035;font-weight:700;font-size:1.05rem;margin:10px 0 4px}
+  .lead{color:#b9c6e4;font-size:.9rem;margin-bottom:20px}
+  .tip{color:#9fb0d4;font-size:.86rem;background:rgba(130,170,255,.08);border:1px solid rgba(130,170,255,.18);
+    border-radius:10px;padding:11px 14px;margin-bottom:22px}
+  .sec-title{font-size:1rem;color:#ffd035;margin:22px 0 10px;padding-left:12px;position:relative}
+  .sec-title::before{content:"";position:absolute;left:0;top:.35em;width:5px;height:18px;background:#e94560;border-radius:3px}
+  .site{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:12px 16px;margin-bottom:9px;transition:border-color .2s}
+  .site:hover{border-color:rgba(255,208,53,.4)}
+  .site .dot{width:9px;height:9px;border-radius:50%;background:#39c27a;flex-shrink:0}
+  .site .dot.backup{background:#ffd035}
+  .site b{color:#fff;min-width:96px;font-size:.95rem}
+  .site a{color:#82aaff;text-decoration:none;word-break:break-all;font-size:.95rem}
+  .site a:hover{color:#ffd035;text-decoration:underline}
+  .site .desc{color:#8fa0c4;font-size:.8rem;width:100%;padding-left:19px}
+  .jump{background:rgba(233,69,96,.1);border:1px solid rgba(233,69,96,.3);border-radius:12px;
+    padding:14px 16px;margin:8px 0 4px;font-size:.95rem;color:#f3c9d2}
+  .jump b{color:#ffd035}
+  .jump button{background:#e94560;color:#fff;border:0;border-radius:8px;padding:5px 14px;font-size:.85rem;
+    cursor:pointer;margin-left:8px;font-weight:700}
+  .jump button:hover{background:#ff5a75}
+  .qr-row{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+  .qr-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;
+    padding:14px;text-align:center;width:190px}
+  .qr-card img{width:100%;border-radius:8px;display:block;background:#fff}
+  .qr-card p{color:#c9d4ee;font-size:.88rem;margin-top:8px}
+  .qr-card p b{color:#ffd035}
+  .note{margin-top:26px;padding:16px 18px;background:rgba(255,208,53,.08);border:1px solid rgba(255,208,53,.25);
+    border-radius:12px;color:#f0dfa8;font-size:.88rem}
+  .note b{color:#ffd035}
+  .foot{margin-top:22px;text-align:center;color:#6e7fa6;font-size:.8rem;line-height:1.8}
+  @media(max-width:480px){.site b{min-width:0}.brand img{width:52px;height:52px}.qr-card{width:100%;max-width:220px}}
+</style>
 </head>
 <body>
-  <a class="sr-only" href="#app">跳到主要内容</a>
-  <div id="app"></div>
-  <script src="assets/app.js"></script>
-  <script>init('home');</script>
+<div class="box">
+  <div class="brand">
+    <img src="assets/avatar.jpg" alt="课代表logo">
+    <h1><b>课代表</b> · 永久收藏页</h1>
+  </div>
+  <div class="slogan">抓考点 · 划重点 · 稳得分</div>
+  <div class="lead">让学习更有方向，让知识真正学明白！</div>
+  <div class="tip">📌 本页零依赖、纯静态，任何网络都能打开。请收藏本页——域名若有变动，来这里就能找到全部入口。</div>
+
+  <div class="sec-title">🌐 全站访问地址（按推荐顺序）</div>
+  <div class="site"><span class="dot"></span><b>主站</b><a href="https://kedaibiao.ccwu.cc/" target="_blank" rel="noopener">https://kedaibiao.ccwu.cc/</a><span class="desc">推荐收藏，Cloudflare 加速</span></div>
+  <div class="site"><span class="dot backup"></span><b>备用站</b><a href="https://kedaibiao2026.cc.cd/" target="_blank" rel="noopener">https://kedaibiao2026.cc.cd/</a><span class="desc">主站打不开时用这个</span></div>
+  <div class="site"><span class="dot backup"></span><b>源站</b><a href="https://kedaibiao2026.pages.dev/" target="_blank" rel="noopener">https://kedaibiao2026.pages.dev/</a><span class="desc">Cloudflare Pages 源地址</span></div>
+
+  <div class="jump">⏳ <span id="msg">正在为你打开主站，也可直接点上方链接。</span><button id="cancel" type="button">取消跳转</button></div>
+
+  <div class="sec-title">💛 赞助（所有资源完全免费）</div>
+  <div class="qr-row">
+    <div class="qr-card"><img src="assets/qr/wechat-sponsor.png" alt="微信赞助二维码"><p><b>微信</b> 赞助</p></div>
+    <div class="qr-card"><img src="assets/qr/alipay-sponsor.png" alt="支付宝赞助二维码"><p><b>支付宝</b> 赞助</p></div>
+  </div>
+
+  <div class="note">
+    本页是<b>永久防丢失入口</b>，托管在 GitHub Pages。即使某个域名到期或被回收，只要本页还在，就能找到全部最新地址。
+    本站所有图文、短视频、资料<b>完全免费、无广告</b>；赞助纯属自愿支持。
+  </div>
+  <div class="foot">课代表 · 免费分享，一起学明白<br>请收藏本页 · 永久保留</div>
+</div>
+<script>
+  /* 唯一的内联脚本：仅做 5 秒自动跳转与取消；即使脚本失效，上方地址仍完整可见 */
+  (function(){
+    var target='https://kedaibiao.ccwu.cc/', sec=5, cancelled=false;
+    var msg=document.getElementById('msg'), btn=document.getElementById('cancel'), timer;
+    function tick(){
+      if(cancelled) return;
+      sec--;
+      if(msg) msg.textContent='⏳ '+sec+' 秒后打开主站，也可直接点上方链接。';
+      if(sec<=0){ location.href=target; return; }
+      timer=setTimeout(tick,1000);
+    }
+    timer=setTimeout(tick,1000);
+    if(btn) btn.addEventListener('click',function(){ cancelled=true; clearTimeout(timer); if(msg) msg.textContent='已取消自动跳转，请从上方选择地址。'; btn.style.display='none'; });
+  })();
+</script>
 </body>
 </html>
